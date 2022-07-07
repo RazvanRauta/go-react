@@ -1,2 +1,2 @@
-backend/cmd/api/tmp/build-errors.log
+backend/cmd/api/tmp/*
 .vscode/*
