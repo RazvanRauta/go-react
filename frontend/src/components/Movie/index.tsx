@@ -1,17 +1,27 @@
-import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { IMovie } from '@/types'
+import useData from '@/hooks/use-data'
+import { IMovieResponse } from '@/types'
 
 export default function Movie() {
   let { id } = useParams()
-  const [movie, setMovie] = useState<IMovie | null>(null)
+  const [loading, error, data] = useData<IMovieResponse>(`/v1/movie/${id}`, 'GET')
 
-  useMemo(() => setMovie({ id: Number(id), title: `Movie ${id}`, runtime: 150 }), [id])
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return (
+      <div>
+        Error: <code>{error}</code>
+      </div>
+    )
+  }
 
   return (
     <>
-      <h2>Movie {movie?.title}</h2>
+      <h2>Movie {data?.movie?.title}</h2>
 
       <table className="table table-compact table-striped">
         <thead></thead>
@@ -20,13 +30,13 @@ export default function Movie() {
             <td>
               <strong>Title:</strong>
             </td>
-            <td>{movie?.title}</td>
+            <td>{data?.movie?.title}</td>
           </tr>
           <tr>
             <td>
               <strong>Runtime:</strong>
             </td>
-            <td>{movie?.runtime}</td>
+            <td>{data?.movie?.runtime}</td>
           </tr>
         </tbody>
       </table>

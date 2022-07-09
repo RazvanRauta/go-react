@@ -17,3 +17,15 @@ export interface IGenre {
 export interface IMovieGenre {
   genre?: IGenre
 }
+
+export interface IAllMoviesResponse {
+  movies: IMovie[]
+}
+
+export interface IMovieResponse {
+  movie: IMovie
+}
+
+export interface IErrorResponse {
+  error: { message?: string }
+}
