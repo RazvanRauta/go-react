@@ -17,30 +17,37 @@ const useData = <T>(
   useEffect(() => {
     let ignore = false
     setLoading(true)
-    const CancelToken = axios.CancelToken
-    const source = CancelToken.source()
+    const controller = new AbortController()
     const fetchData = async () => {
       try {
         const response = await axios({
           url: url,
           method: method,
           data: body,
-          cancelToken: source.token,
+          signal: controller.signal,
         })
         const data = response?.data
         if (!ignore) {
           setData(data)
         }
       } catch (err: any) {
-        console.error(err)
-        if (!ignore) {
-          const error = err as Error | AxiosError<IErrorResponse>
-          if (axios.isAxiosError(error)) {
+        const error = err as Error | AxiosError<IErrorResponse>
+
+        if (axios.isAxiosError(error)) {
+          if (error.code === AxiosError.ERR_CANCELED) {
+            console.info(`The request to "${url}" was canceled`)
+            return
+          }
+          if (!ignore) {
             setError(error?.response?.data?.error?.message || error.message)
-          } else {
+          }
+        } else {
+          if (!ignore) {
             setError(error.message)
           }
         }
+
+        console.error(err)
       } finally {
         if (!ignore) {
           setLoading(false)
@@ -52,7 +59,7 @@ const useData = <T>(
 
     return () => {
       ignore = true
-      source.cancel()
+      controller.abort()
     }
   }, [url])
 
