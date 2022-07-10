@@ -1,12 +1,20 @@
 import React from 'react'
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 
-const Admin = React.lazy(() => import('@/components/Admin'))
-const Home = React.lazy(() => import('@/components/Home'))
-const Movies = React.lazy(() => import('@/components/Movies'))
-const Movie = React.lazy(() => import('@/components/Movie'))
-const CategoryPage = React.lazy(() => import('@/components/CategoryPage'))
-const Categories = React.lazy(() => import('@/components/Categories'))
+import { routes } from '@/routes'
+
+const NotFound = React.lazy(() => import('@/components/NotFound'))
+
+const routeComponents = [
+  ...routes.map(({ path, element, title }, key) => {
+    const Element = element as React.FC<{ title?: string }>
+    return <Route path={path} element={<Element title={title} />} key={key} />
+  }),
+  // ...protectedRoutes.map(({ path, element }, key) => (
+  //   <ProtectedRoute key={key} path={path} element={element} />
+  // )),
+  <Route path="*" element={<NotFound />} key={'404-page'} />,
+]
 
 function App() {
   return (
@@ -38,65 +46,9 @@ function App() {
           </div>
 
           <div className="col-md-10">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <React.Suspense fallback={<>...</>}>
-                    <Home />
-                  </React.Suspense>
-                }
-              />
-              <Route
-                path="/movies"
-                element={
-                  <React.Suspense fallback={<>...</>}>
-                    <Movies />
-                  </React.Suspense>
-                }
-              />
-              <Route
-                path="/movies/:id"
-                element={
-                  <React.Suspense fallback={<>...</>}>
-                    <Movie />
-                  </React.Suspense>
-                }
-              />
-
-              <Route
-                path="/categories"
-                element={
-                  <React.Suspense fallback={<>...</>}>
-                    <CategoryPage />
-                  </React.Suspense>
-                }
-              />
-              <Route
-                path="/categories/drama"
-                element={
-                  <React.Suspense fallback={<>...</>}>
-                    <Categories title={`drama`} />
-                  </React.Suspense>
-                }
-              />
-              <Route
-                path="/categories/comedy"
-                element={
-                  <React.Suspense fallback={<>...</>}>
-                    <Categories title={`comedy`} />
-                  </React.Suspense>
-                }
-              />
-              <Route
-                path="/admin"
-                element={
-                  <React.Suspense fallback={<>...</>}>
-                    <Admin />
-                  </React.Suspense>
-                }
-              />
-            </Routes>
+            <React.Suspense fallback={<>Loading...</>}>
+              <Routes>{routeComponents}</Routes>
+            </React.Suspense>
           </div>
         </div>
       </div>
