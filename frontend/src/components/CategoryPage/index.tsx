@@ -9,10 +9,14 @@ export default function CategoryPage() {
 
       <ul>
         <li>
-          <Link to={`${pathname}/comedy`}>Comedy</Link>
+          <Link className="no-underline hover:underline" to={`${pathname}/comedy`}>
+            Comedy
+          </Link>
         </li>
         <li>
-          <Link to={`${pathname}/drama`}>Drama</Link>
+          <Link className="no-underline hover:underline" to={`${pathname}/drama`}>
+            Drama
+          </Link>
         </li>
       </ul>
     </div>

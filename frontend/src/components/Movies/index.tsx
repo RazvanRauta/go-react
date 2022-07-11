@@ -25,7 +25,9 @@ export default function Movies() {
       <ul>
         {data?.movies.map((m) => (
           <li key={m.id}>
-            <Link to={`/movies/${m.id}`}>{m.title}</Link>
+            <Link className="no-underline hover:underline" to={`/movies/${m.id}`}>
+              {m.title}
+            </Link>
           </li>
         ))}
       </ul>

@@ -19,33 +19,41 @@ const routeComponents = [
 function App() {
   return (
     <Router>
-      <div className="container">
-        <div className="row">
+      <div className="container mx-auto sm:px-4">
+        <div className="flex flex-wrap">
           <h1 className="mt-3">Go Watch a Movie!</h1>
           <hr className="mb-3"></hr>
         </div>
 
-        <div className="row">
-          <div className="col-md-2">
+        <div className="flex flex-wrap">
+          <div className="pr-4 pl-4 md:w-1/5">
             <nav>
-              <ul className="list-group">
-                <li className="list-group-item">
-                  <Link to="/">Home</Link>
+              <ul className="mb-0 flex flex-col rounded border border-gray-300 pl-0">
+                <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
+                  <Link className="no-underline hover:underline" to="/">
+                    Home
+                  </Link>
                 </li>
-                <li className="list-group-item">
-                  <Link to="/categories">Categories</Link>
+                <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
+                  <Link className="no-underline hover:underline" to="/categories">
+                    Categories
+                  </Link>
                 </li>
-                <li className="list-group-item">
-                  <Link to="/movies">Movies</Link>
+                <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
+                  <Link className="no-underline hover:underline" to="/movies">
+                    Movies
+                  </Link>
                 </li>
-                <li className="list-group-item">
-                  <Link to="/admin">Manage Catalogue</Link>
+                <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
+                  <Link className="no-underline hover:underline" to="/admin">
+                    Manage Catalogue
+                  </Link>
                 </li>
               </ul>
             </nav>
           </div>
 
-          <div className="col-md-10">
+          <div className="pr-4 pl-4 md:w-4/5">
             <React.Suspense fallback={<>Loading...</>}>
               <Routes>{routeComponents}</Routes>
             </React.Suspense>

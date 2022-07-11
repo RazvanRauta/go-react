@@ -23,7 +23,7 @@ export default function Movie() {
     <>
       <h2>Movie {data?.movie?.title}</h2>
 
-      <table className="table table-compact table-striped">
+      <table className="mb-4 w-full max-w-full table-auto border-collapse bg-transparent">
         <thead></thead>
         <tbody>
           <tr>

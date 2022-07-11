@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+@layer base {
+  h1 {
+    @apply mt-0 mb-2 text-5xl font-semibold leading-normal;
+  }
+  h2 {
+    @apply mt-0 mb-2 text-4xl font-semibold leading-normal;
+  }
+  h3 {
+    @apply mt-0 mb-2 text-3xl font-semibold leading-normal;
+  }
+  h4 {
+    @apply mt-0 mb-2 text-2xl font-semibold leading-normal;
+  }
+
+  h5 {
+    @apply mt-0 mb-2 text-xl font-semibold leading-normal;
+  }
+
+  h6 {
+    @apply mt-0 mb-2 text-lg font-semibold leading-normal;
+  }
+}
+
+:root {
+  --color-primary-light: hsl(210, 100%, 98%);
+  --color-primary-100: hsl(210, 100%, 95%);
+  --color-primary-200: hsl(210, 100%, 85%);
+  --color-primary-300: hsl(210, 100%, 80%);
+  --color-primary-400: hsl(210, 100%, 75%);
+  --color-primary-500: hsl(210, 100%, 60%);
+  --color-primary-600: hsl(210, 100%, 50%);
+  --color-primary-700: hsl(210, 100%, 40%);
+  --color-primary-800: hsl(210, 100%, 30%);
+  --color-primary-900: hsl(210, 100%, 20%);
+  --color-primary-dark: hsl(210, 100%, 2%);
+}
+
+input,
+select,
+textarea {
+  @apply text-black;
+}
