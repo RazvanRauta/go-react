@@ -1,14 +1,14 @@
 import React from 'react'
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 
-import { routes } from '@/routes'
+import { ROUTES, routes } from '@/routes'
 
 const NotFound = React.lazy(() => import('@/components/NotFound'))
 
 const routeComponents = [
-  ...routes.map(({ path, element, title }, key) => {
-    const Element = element as React.FC<{ title?: string }>
-    return <Route path={path} element={<Element title={title} />} key={key} />
+  ...routes.map(({ path, element }, key) => {
+    const Element = element as React.FC
+    return <Route path={path} element={<Element />} key={key} />
   }),
   // ...protectedRoutes.map(({ path, element }, key) => (
   //   <ProtectedRoute key={key} path={path} element={element} />
@@ -22,7 +22,7 @@ function App() {
       <div className="container mx-auto sm:px-4">
         <div className="flex flex-wrap">
           <h1 className="mt-3">Go Watch a Movie!</h1>
-          <hr className="mb-3"></hr>
+          <hr className="mb-3 w-full border-t-2" />
         </div>
 
         <div className="flex flex-wrap">
@@ -30,22 +30,22 @@ function App() {
             <nav>
               <ul className="mb-0 flex flex-col rounded border border-gray-300 pl-0">
                 <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
-                  <Link className="no-underline hover:underline" to="/">
+                  <Link className="no-underline hover:underline" to={ROUTES.HOME}>
                     Home
                   </Link>
                 </li>
                 <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
-                  <Link className="no-underline hover:underline" to="/categories">
-                    Categories
+                  <Link className="no-underline hover:underline" to={ROUTES.GENRES}>
+                    Genres
                   </Link>
                 </li>
                 <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
-                  <Link className="no-underline hover:underline" to="/movies">
+                  <Link className="no-underline hover:underline" to={ROUTES.MOVIES}>
                     Movies
                   </Link>
                 </li>
                 <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
-                  <Link className="no-underline hover:underline" to="/admin">
+                  <Link className="no-underline hover:underline" to={ROUTES.ADMIN}>
                     Manage Catalogue
                   </Link>
                 </li>

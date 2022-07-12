@@ -26,6 +26,18 @@
   }
 }
 
+@layer components {
+  .clearfix {
+    overflow: auto;
+    &::after{
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+
+}
+
 :root {
   --color-primary-light: hsl(210, 100%, 98%);
   --color-primary-100: hsl(210, 100%, 95%);

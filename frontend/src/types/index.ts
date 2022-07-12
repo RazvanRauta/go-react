@@ -7,7 +7,7 @@ export interface IMovie {
   runtime?: number
   rating?: number
   mpaaRating?: string
-  genres?: Record<string, string>
+  genres?: Record<string, string> | string[]
 }
 
 export interface IGenre {
@@ -28,4 +28,8 @@ export interface IMovieResponse {
 
 export interface IErrorResponse {
   error: { message?: string }
+}
+
+export interface IAllGenresResponse {
+  genres: []
 }
