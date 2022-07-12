@@ -44,6 +44,50 @@ func (app *application) getAllMovies(res http.ResponseWriter, r *http.Request) {
 
 }
 
+func (app *application) getAllGenres(res http.ResponseWriter, req *http.Request) {
+
+	genres, err := app.models.DB.GenresAll()
+
+	if err != nil {
+		app.errorJSON(res, err)
+		return
+	}
+
+	err = app.responseToJson(res, http.StatusOK, genres, "genres")
+	if err != nil {
+		app.errorJSON(res, err)
+		return
+	}
+
+}
+
+func (app *application) getAllMoviesByGenre(res http.ResponseWriter, req *http.Request) {
+
+	params := httprouter.ParamsFromContext(req.Context())
+
+	genreID, err := strconv.Atoi(params.ByName("genre_id"))
+
+	if err != nil {
+		app.logger.Print(errors.New("invalid id parameter"))
+		app.errorJSON(res, err)
+		return
+	}
+
+	movies, err := app.models.DB.All(genreID)
+
+	if err != nil {
+		app.errorJSON(res, err)
+		return
+	}
+
+	err = app.responseToJson(res, http.StatusOK, movies, "movies")
+	if err != nil {
+		app.errorJSON(res, err)
+		return
+	}
+
+}
+
 func (app *application) deleteMovie(res http.ResponseWriter, req *http.Request) {
 
 }

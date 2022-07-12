@@ -12,6 +12,7 @@ export interface IMovie {
 
 export interface IGenre {
   genreName?: string
+  id: number
 }
 
 export interface IMovieGenre {
@@ -31,5 +32,5 @@ export interface IErrorResponse {
 }
 
 export interface IAllGenresResponse {
-  genres: []
+  genres?: IGenre[]
 }
