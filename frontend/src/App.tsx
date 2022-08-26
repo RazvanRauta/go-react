@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 
 import { ROUTES, routes } from '@/routes'
 
-const NotFound = React.lazy(() => import('@/components/NotFound'))
+const NotFound = React.lazy(() => import('@/pages/NotFound'))
 
 const routeComponents = [
   ...routes.map(({ path, element }, key) => {
@@ -42,6 +42,11 @@ function App() {
                 <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
                   <Link className="no-underline hover:underline" to={ROUTES.MOVIES}>
                     Movies
+                  </Link>
+                </li>
+                <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">
+                  <Link className="no-underline hover:underline" to={ROUTES.ADD_MOVIE}>
+                    Add/Edit Movie
                   </Link>
                 </li>
                 <li className="relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline">

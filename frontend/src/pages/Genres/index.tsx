@@ -27,7 +27,7 @@ export default function Genres() {
         {genres &&
           genres.map((gen) => (
             <li key={gen.id}>
-              <Link className="no-underline hover:underline" to={`/genre/${gen.id}`}>
+              <Link to={`/genre/${gen.id}`} state={{ genreName: gen.genreName }}>
                 {gen.genreName}
               </Link>
             </li>

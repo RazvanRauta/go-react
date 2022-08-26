@@ -22,15 +22,17 @@ export default function Movies() {
     <>
       <h2>Choose a movie</h2>
 
-      <ul>
+      <div className="mb-0 flex flex-col rounded border border-gray-300 pl-0">
         {data?.movies.map((m) => (
-          <li key={m.id}>
-            <Link className="no-underline hover:underline" to={`/movie/${m.id}`}>
-              {m.title}
-            </Link>
-          </li>
+          <Link
+            key={m.id}
+            className="w-fill relative -mb-px block border border-r-0 border-l-0 border-gray-300 py-3 px-6 no-underline hover:bg-gray-300 hover:underline"
+            to={`/movie/${m.id}`}
+          >
+            {m.title}
+          </Link>
         ))}
-      </ul>
+      </div>
     </>
   )
 }

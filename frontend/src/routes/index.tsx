@@ -1,11 +1,12 @@
 import React from 'react'
 
-const Admin = React.lazy(() => import('@/components/Admin'))
-const Home = React.lazy(() => import('@/components/Home'))
-const Movies = React.lazy(() => import('@/components/Movies'))
-const Movie = React.lazy(() => import('@/components/Movie'))
-const Genres = React.lazy(() => import('@/components/Genres'))
-const Genre = React.lazy(() => import('@/components/Genre'))
+const Admin = React.lazy(() => import('@/pages/Admin'))
+const Home = React.lazy(() => import('@/pages/Home'))
+const Movies = React.lazy(() => import('@/pages/Movies'))
+const Movie = React.lazy(() => import('@/pages/Movie'))
+const Genres = React.lazy(() => import('@/pages/Genres'))
+const Genre = React.lazy(() => import('@/pages/Genre'))
+const EditMovie = React.lazy(() => import('@/pages/EditMovie'))
 
 export const ROUTES = {
   HOME: '/',
@@ -14,6 +15,7 @@ export const ROUTES = {
   GENRES: '/genres',
   GENRES_ID: '/genre/:id',
   ADMIN: '/admin',
+  ADD_MOVIE: '/admin/add',
 }
 
 export const routes = [
@@ -23,6 +25,7 @@ export const routes = [
   { path: ROUTES.GENRES, element: Genres },
   { path: ROUTES.GENRES_ID, element: Genre },
   { path: ROUTES.ADMIN, element: Admin },
+  { path: ROUTES.ADD_MOVIE, element: EditMovie },
 ]
 
 export const protectedRoutes = []
